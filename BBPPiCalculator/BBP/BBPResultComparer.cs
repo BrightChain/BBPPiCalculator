@@ -5,8 +5,14 @@
 /// </summary>
 public class BBPResultComparer : IComparer<BBPResult>
 {
-    public int Compare(BBPResult x, BBPResult y)
+    public int Compare(BBPResult? x, BBPResult? y)
     {
-        return x.Digit.CompareTo(value: y.Digit);
+        return x switch
+        {
+            null when y is null => 0,
+            null => -1,
+            not null when y is null => 1,
+            _ => x!.Digit.CompareTo(value: y!.Digit),
+        };
     }
 }
