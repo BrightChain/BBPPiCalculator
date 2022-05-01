@@ -126,7 +126,7 @@ public class FasterKVBBPiMiner : IDisposable
             key: NextSizeKey(
                 blockSize: blockSize));
 
-        return status == Status.OK ? NextSizeValue(storedValue: output) : 0;
+        return status.Found ? NextSizeValue(storedValue: output) : 0;
     }
 
     private void SetNextN(int blockSize, long nextN,
